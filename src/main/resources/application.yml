@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-boot-flyway-integration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/oz-test-db
+    username: applicationuser
+    password: appPassword
+
+flyway:
+  url: jdbc:postgresql://localhost:5432/oz-test-db
+  user: postgres
+  password: password
+  locations: classpath:db/migration

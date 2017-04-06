@@ -1,0 +1,46 @@
+group 'com.oz'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+  }
+}
+
+jar {
+  baseName = 'spring-boot-flyway-integration'
+  version =  '1.0-SNAPSHOT'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  // Basic configuration
+  compile("org.springframework.boot:spring-boot-starter-web") {
+    exclude module: "spring-boot-starter-tomcat"
+  }
+  compile("org.springframework.boot:spring-boot-starter-jetty")
+  compile("org.springframework.boot:spring-boot-starter-actuator")
+
+  // DB configuration
+  compile("org.flywaydb:flyway-core")
+  compile("org.postgresql:postgresql")
+  compile("org.springframework.boot:spring-boot-starter-data-jpa")
+  compile("org.springframework.boot:spring-boot-starter-data-rest")
+
+  compileOnly("org.projectlombok:lombok")
+
+  testCompile("junit:junit")
+}
